@@ -10,7 +10,9 @@ body{
   min-height:450px;
   position: relative;
 }
-
+.header_title{
+  text-align:center;
+}
 .circle {
   width: 80px;
   height: 80px;
