@@ -1,0 +1,14 @@
+{
+  "name": "jonli-angulardan-chat",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/Abuzbek/AngularChat",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
