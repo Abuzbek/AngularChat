@@ -10,5 +10,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "semantic": "^2.4.1",
+    "angular":"^1.8.0"
+  }
 }
