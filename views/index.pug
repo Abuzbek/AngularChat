@@ -21,10 +21,11 @@ block content
       .ui.items.chat
         .item(ng-repeat="message in messages")
           .content(ng-if='!message.type')
-            a.header.name {{message.username}} &nbsp;
+            a.header.name 
+              | {{message.username}} &nbsp;
             .description.message
               | Chatga Qoshildi
       .ui.action.input.fluid
         input(type='text', placeholder='Type here...')
-        button.ui.button Send
+        button.ui.button.inverted.teal Send
 
