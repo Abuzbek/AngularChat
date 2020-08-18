@@ -2,7 +2,7 @@ extends layout
 
 block content
  h1.header_title Angulardan chat
- div(ng-controller="indexController")
+ div(ng-controller="indexController" ng-init="init()")
   .ui.one.column.stackable.center.aligned.page.grid.margin-30
     .column.twelve.wide
       .ui.stacked.segment.gameArea
@@ -19,26 +19,11 @@ block content
             span.name Shoxnur
             .message Bu juda qiziqarli!!!!
       .ui.items.chat
-        .item
-          .content
-            a.header.name Asror
+        .item(ng-repeat="message in messages")
+          .content(ng-if='!message.type')
+            a.header.name {{message.username}} &nbsp;
             .description.message
-              | Salom
-        .item
-          .content
-            a.header.name Behruz
-            .description.message
-              | Salom qaleysan :)
-        .item
-          .content
-            a.header.name Shoxnur
-            .description.message
-              | Bu juda qiziq!!!!
-        .item
-          .content
-            a.header.name Zemeister
-            .description.message
-              | hey
+              | Chatga Qoshildi
       .ui.action.input.fluid
         input(type='text', placeholder='Type here...')
         button.ui.button Send
