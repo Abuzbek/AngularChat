@@ -1,11 +1,14 @@
 {
-  "name": "jonli-angulardan-chat",
-  "version": "0.0.0",
+  "name": "3lesson-chat",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "start:dev": "nodemon ./bin/www",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
+    "bower": "^1.8.8",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
