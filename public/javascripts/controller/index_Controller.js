@@ -1,8 +1,6 @@
-app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($scope, indexFactory, configFactory) => {     // Eng asosiy qisimlar yoziladi: : Client qismi 
-
-
-    $scope.messages = [];
-    $scope.players = {};
+    app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($scope, indexFactory, configFactory) => {     // Eng asosiy qisimlar yoziladi: : Client qismi 
+        $scope.messages = [];
+        $scope.players = {};
     
     function scrollTop () {
         setTimeout(() => {
@@ -51,7 +49,7 @@ app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($s
                         code: 0, // server or user message
                         message: 1 // login or disconnect
                     }, 
-                    username: data.username // aziz
+                    username: data.username ,
                 }
                 $scope.messages.push(messageData);
                 $scope.players[data.id] = data
@@ -66,7 +64,8 @@ app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($s
                         code: 0, // server or user message
                         message: 0 // login or disconnect
                     }, 
-                    username: user.username // aziz
+                    username: user.username ,
+                   
                 }
                 $scope.messages.push(messageData)
                 delete $scope.players[user.id]

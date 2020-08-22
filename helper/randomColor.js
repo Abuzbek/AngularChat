@@ -1,8 +1,13 @@
-const colors = ['blue', 'green','red','black','orange','white'];
+setInterval(() => {
+     r = Math.floor(Math.random() * 256)
+     g = Math.floor(Math.random() * 256)
+     b = Math.floor(Math.random() * 256)
+    
+}, 2000);
 
 
 const randomColors = () => {
-    return colors[Math.floor(Math.random() * colors.length)]
+    return `rgb(${r} , ${g} , ${b})`
 }
 
 module.exports = randomColors;
