@@ -4,7 +4,7 @@
     
     function scrollTop () {
         setTimeout(() => {
-            const el = document.querySelector("#chat-aria");
+            const el = document.querySelector(".chat_area");
             el.scrollTop = el.scrollHeight;
         })
     }
@@ -41,15 +41,25 @@
                 // scrollTop()
                 $scope.$apply();
             })
-
+            socket.on("randomColor", (color) => {
+                colorRand = color
+            })
+           
             socket.on("newUser", (data) => {
                 // console.log(data);
                 const messageData = {
                     type: {
                         code: 0, // server or user message
-                        message: 1 // login or disconnect
+                        message: 1,
+                          // login or disconnect
                     }, 
                     username: data.username ,
+                    colorRandtwo: colorRand,
+                   
+                }
+                
+                const navData = {
+                    username: data.username 
                 }
                 $scope.messages.push(messageData);
                 $scope.players[data.id] = data
@@ -65,21 +75,17 @@
                         message: 0 // login or disconnect
                     }, 
                     username: user.username ,
-                   
+                    colorRandtwo: colorRand
                 }
+                const navData = {
+                        username: user.username 
+                    }
                 $scope.messages.push(messageData)
                 delete $scope.players[user.id]
                 
                 $scope.$apply();
             })
 
-
-            socket.on("animate", data => {
-                // console.log(data);
-                $('#'+data.socketId).animate({'left': data.x, 'top': data.y}, () => {
-                    animate = false
-                })
-            })
 
             // Biz bekendan message qarshilavomiz
 
@@ -88,31 +94,21 @@
                 $scope.$apply()
                 scrollTop()
             })
-
-
-
-
+            
             // Click jarayonini yozamiz 
-            let animate = false
-            $scope.onClickPlayer = ($event) => {
-                // console.log($event.offsetX, $event.offsetY);
-                if(!animate){
-                    let x = $event.offsetX
-                    let y = $event.offsetY
-
-
-                    socket.emit("position", {x, y});
-
-
-                    animate = true
-                    $('#'+socket.id).animate({'left': x, 'top': y}, () => {
-                        animate = false
-                    })
-                }
-                //    console.log($event.offsetX, $event.offsetY);
+            let animate = true
+           
+            $scope.mobilClick =($event)=>{
+                $('.navbar_nav').addClass('active')
+                $('.backLink').fadeIn()
+                $('#app').addClass('active')
+            }
+            $scope.backClick =($event)=>{
+                $('.navbar_nav').removeClass('active')
+                $('.backLink').fadeOut()
+                $('#app').removeClass('active')
 
             }
-
             $scope.newMessage = () => {
                 let message = $scope.message;
                 const messageData = {
@@ -120,19 +116,23 @@
                         code: 1, 
                     }, 
                     username: username, // aziz
-                    text: message
-
+                    text: message,
+                    color:colorRand,
+                }
+                const navData = {
+                    username: username 
                 }
                 $scope.messages.push(messageData);
                 $scope.message = '';
                 scrollTop()
                 socket.emit("newMessage", messageData)
-
+               
                 
 
 
                 // $scope.$apply();
-            }    
+            }   
+           
 
         }).catch((err) => {
             console.log(err);

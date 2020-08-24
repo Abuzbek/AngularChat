@@ -1,34 +1,50 @@
 extends layout
 
 block content
-  h1.header_title= title
-  p.header_text Welcome to #{title}
   div(ng-controller="indexController", ng-init="init()")
-    .ui.one.column.stackable.center.aligned.page.grid.margin-30
-      .column.twelve.wide
-        .ui.stacked.segment.gameArea(ng-click="onClickPlayer($event)")
-          .circle(ng-repeat="player in players", 
-                       ng-style="{ 'left': player.position.x + 'px', 'top': player.position.y + 'px' }", 
-                        id="{{ player.id }}",
-                        style="background:{{ player.color }};"
-                        )
-                        
-            .relative
-              span.name {{ player.username }}
-              //- .message Salom
-        .ui.items.chat#chat-aria
-          .item(ng-repeat='message in messages' )
-            .content(ng-if="!message.type.code" ) 
-              a.header.name {{ message.username }} &nbsp;
-              .description.message(ng-if="!message.type.message")
-                | Chatdan Ayrildi
-              .description.message(ng-if="message.type.message")
-                | Chatga qo'shildi 
-            .content(ng-if="message.type.code" ) 
-              a.header.name {{ message.username }} &nbsp;
-              .description.message
-                | {{ message.text }} 
-        form.ui.action.input.fluid(ng-submit="newMessage()")
-          input(ng-model='message', placeholder='Shu yerga Yozishingiz kerak')
-          button.ui.button(type="submit") Jo'nat
+    .container
+      .row
+        .col-12.chatParent.p-0.pt-4
+          .text_header
+            h1.header_title= title
+            p.header_text Welcome to User
+          .chat.chat_area
+            .item(ng-repeat='message in messages' )
+              .content(ng-if="!message.type.code" ,  style="background: {{message.colorRandtwo}} !important;") 
+                  a.header_name {{ message.username }} &nbsp;
+                  .description.message(ng-if="!message.type.message")
+                    | Chatdan Chiqib ketdi
+                  .description_message(ng-if="message.type.message")
+                    | Chatga qo'shildi 
+              .content(ng-if="message.type.code" ,  style="background: {{message.color}} !important;") 
+                a.header_name {{ message.username }} &nbsp;
+                .description_message
+                  | {{ message.text }}
+          form(ng-submit="newMessage()" )
+            input.form-control(ng-model='message',, ng-focus="focusInput()", placeholder='Shu yerga Yozishingiz kerak', id="messageArea")
+            label(for="messageArea").text-white 
+            button.btn.btn-dark(type="submit") 
+              i.fab.fa-telegram-plane.text-white        
+  //- div(ng-controller="indexController", ng-init="init()")
+  //-   ul.navbar_nav(ng-repeat='navbar in navbar')
+  //-     li.nav_item 
+  //-       i.fas.fa-comment
+  //-       a(href="#!" style="margin-left:15px; ") {{navbar.username}}  &nbsp;
+  //-   #app
+  //-     navbar.nav.fixed_top
+  //-       .mobil_link(ng-click="mobilClick($event)")
+  //-         i.fas.fa-bars
+  //-       a.backLink(ng-click="backClick($event)")  
+  //-     .ui.one.column.stackable.center.aligned.page.grid.col-lg-9
+  //-       .text_header
+  //-         h1.header_title= title
+  //-         br
+  //-         p.header_text Welcome to #{titleH2}
+  //-       .column.twelve.wide
+  //-         .ui.items.chat#chat-aria
+  //-           .item(ng-repeat='message in messages' )
+  //-             
+  //-         form.ui.action.input.fluid(ng-submit="newMessage()")
+  //-           input(ng-model='message', placeholder='Shu yerga Yozishingiz kerak')
+  //-           button.ui.button(type="submit") Jo'nat
 
