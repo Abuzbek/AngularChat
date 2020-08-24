@@ -1,6 +1,7 @@
     app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($scope, indexFactory, configFactory) => {     // Eng asosiy qisimlar yoziladi: : Client qismi 
         $scope.messages = [];
-        $scope.players = {};
+        console.log($scope.messages)
+        // $scope.players = {};
         // $scope.$apply();
     
     function scrollTop () {
@@ -37,14 +38,12 @@
             socket.emit("newUser",  { username }) 
 
 
-            socket.on("initPlayers", (players) => {
-                $scope.players = players
-                $scope.$apply();
-            })
-            socket.on("randomColor", (color) => {
-                colorRand = color
-            })
-           
+            // socket.on("initPlayers", (players) => {
+            //     $scope.messages.push(players)
+            //     $scope.$apply();
+            //     pleyerColor =players
+            // })
+            
             socket.on("newUser", (data) => {
                 // console.log(data);
                 const messageData = {
@@ -54,15 +53,9 @@
                           // login or disconnect
                     }, 
                     username: data.username ,
-                    colorRandtwo: colorRand,
-                   
-                }
-                
-                const navData = {
-                    username: data.username 
+                    color:data.color
                 }
                 $scope.messages.push(messageData);
-                $scope.players[data.id] = data
                 $scope.$apply();
                 //clientIshlashi uchun
             })
@@ -75,14 +68,9 @@
                         message: 0 // login or disconnect
                     }, 
                     username: user.username ,
-                    colorRandtwo: colorRand
+                    color:user.color
                 }
-                const navData = {
-                        username: user.username 
-                    }
                 $scope.messages.push(messageData)
-                delete $scope.players[user.id]
-                
                 $scope.$apply();
             })
 
@@ -115,10 +103,7 @@
                     }, 
                     username: username, // aziz
                     text: message,
-                    color:colorRand,
-                }
-                const navData = {
-                    username: username 
+                    color:randomColors()
                 }
                 $scope.messages.push(messageData);
                 $scope.message = '';

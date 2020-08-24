@@ -1,4 +1,3 @@
-const colors = ()=>{
     let r;
     let g;
     let b;
@@ -12,7 +11,6 @@ const colors = ()=>{
        return `rgb(${r} , ${g} , ${b})`
    }
    module.exports = randomColors;
-}
-colors()
+
 
 

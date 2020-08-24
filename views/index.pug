@@ -10,7 +10,7 @@ block content
             p.header_text Welcome to User
           .chat.chat_area
             .item(ng-repeat='message in messages' )
-              .content(ng-if="!message.type.code" ,  style="background: {{message.colorRandtwo}} !important;") 
+              .content(ng-if="!message.type.code" ,  style="background: {{message.color}} !important;") 
                   a.header_name {{ message.username }} &nbsp;
                   .description.message(ng-if="!message.type.message")
                     | Chatdan Chiqib ketdi
@@ -21,7 +21,7 @@ block content
                 .description_message
                   | {{ message.text }}
           form(ng-submit="newMessage()" )
-            input.form-control(ng-model='message',, ng-focus="focusInput()", placeholder='Shu yerga Yozishingiz kerak', id="messageArea")
+            input.form-control(ng-model='message',  placeholder='Shu yerga Yozishingiz kerak', id="messageArea")
             label(for="messageArea").text-white 
             button.btn.btn-dark(type="submit") 
               i.fab.fa-telegram-plane.text-white        
