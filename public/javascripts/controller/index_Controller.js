@@ -1,6 +1,7 @@
     app.controller("indexController", ['$scope', 'indexFactory','configFactory', ($scope, indexFactory, configFactory) => {     // Eng asosiy qisimlar yoziladi: : Client qismi 
         $scope.messages = [];
         $scope.players = {};
+        // $scope.$apply();
     
     function scrollTop () {
         setTimeout(() => {
@@ -38,7 +39,6 @@
 
             socket.on("initPlayers", (players) => {
                 $scope.players = players
-                // scrollTop()
                 $scope.$apply();
             })
             socket.on("randomColor", (color) => {
