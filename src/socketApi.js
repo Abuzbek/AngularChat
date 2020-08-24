@@ -15,10 +15,6 @@ io.on("connection", (socket) => {
         // console.log(data);
         const defoultData = {
             id: socket.id,
-            position: {
-                x: 0,
-                y: 0
-            },
             color: randomColors()
         };
         const userData = Object.assign(data, defoultData)

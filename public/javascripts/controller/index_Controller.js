@@ -94,9 +94,6 @@
                 $scope.$apply()
                 scrollTop()
             })
-            
-            // Click jarayonini yozamiz 
-            let animate = true
            
             $scope.mobilClick =($event)=>{
                 $('.navbar_nav').addClass('active')
@@ -109,6 +106,7 @@
                 $('#app').removeClass('active')
 
             }
+            
             $scope.newMessage = () => {
                 let message = $scope.message;
                 const messageData = {
